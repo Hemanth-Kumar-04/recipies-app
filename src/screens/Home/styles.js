@@ -1,25 +1,45 @@
-import React from "react";
-import { Image, ImageBackground, Text, View } from "react-native";
-import Button from "../../components/Button";
-import styles from "./styles";
+import { StyleSheet } from "react-native";
+import colors from "../../constants/colors";
 
-const Splash = ({ navigation }) => {
-    return (
-        <ImageBackground style={styles.background} source={require('../../../assets/splash.png')}>
-            <View style={styles.container}>
-                <Image style={styles.logo} source={require('../../../assets/logo.png')} />
-                <Text style={styles.title}>100K+ Premium Recipe</Text>
-            </View>
+const styles = StyleSheet.create({
+    background: { 
+        width: '100%', 
+        height: '100%',
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    container: {
+        paddingHorizontal: 15,
+        paddingVertical: 40,
+    },
+    logo: {
+        width: 80,
+        height: 80,
+        alignSelf: 'center',
+        marginBottom: 14,
+    },
+    title: {
+        color: colors.white,
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: '500'
+    },
+    bigTitle: {
+        fontSize: 50,
+        color: colors.white,
+        paddingHorizontal: 30,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    subtitle: {
+        color: colors.white,
+        textAlign: 'center',
+        fontSize: 16,
+        marginBottom: 64,
+        marginTop: 20,
+    }
+})
 
-            <View style={styles.container}>
-                <Text style={styles.bigTitle}>Get</Text>
-                <Text style={styles.bigTitle}>Cooking</Text>
-                <Text style={styles.subtitle}>Simple way to find Tasty Recipe</Text>
-
-                <Button onPress={() => navigation.navigate('Home')}>Start Cooking</Button>
-            </View>
-        </ImageBackground>
-    )
-}
-
-export default React.memo(Splash);
+export default styles;
