@@ -1,25 +1,64 @@
 import React from "react";
-import { Image, ImageBackground, Text, View } from "react-native";
-import Button from "../../components/Button";
+import { FlatList, SafeAreaView, Text } from "react-native";
+import Card from "../../components/Card";
+import Categories from "../../components/Categories";
+import Input from "../../components/Input";
+import RecipeCard from "../../components/RecipeCard";
+import Title from "../../components/Title";
 import styles from "./styles";
 
-const Splash = ({ navigation }) => {
+const Home = ({ navigation }) => {
     return (
-        <ImageBackground style={styles.background} source={require('../../../assets/splash.png')}>
-            <View style={styles.container}>
-                <Image style={styles.logo} source={require('../../../assets/logo.png')} />
-                <Text style={styles.title}>100K+ Premium Recipe</Text>
-            </View>
+        <SafeAreaView style={styles.container}>
+            <Input pressable onPress={() => navigation.navigate('Search')} />
 
-            <View style={styles.container}>
-                <Text style={styles.bigTitle}>Get</Text>
-                <Text style={styles.bigTitle}>Cooking</Text>
-                <Text style={styles.subtitle}>Simple way to find Tasty Recipe</Text>
+            <Title text="Featured Recipes" />
 
-                <Button onPress={() => navigation.navigate('Home')}>Start Cooking</Button>
-            </View>
-        </ImageBackground>
+            <FlatList 
+                horizontal
+                data={[1,2,3]} 
+                style={{marginHorizontal: -24}}
+                keyExtractor={item => String(item)}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({index}) => (
+                    <RecipeCard
+                        style={index === 0 ? { marginLeft: 24 } : {}}
+                        title="Steak with tomato sauce and bulgur rice."
+                        time="20 mins"
+                        author={{
+                            name: 'James Milner',
+                            image: 'https://lwlies.com/wp-content/uploads/2017/04/avatar-2009.jpg'
+                        }}
+                    />
+                )}
+            />
+
+
+            <Categories categories={["All", "Trending"]} selectedCategory="All" onCategoryPress={() => {}} />
+
+
+
+            <FlatList
+                horizontal
+                data={[1, 2, 3]}
+                style={{ marginHorizontal: -24 }}
+                keyExtractor={item => String(item)}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ index }) => (
+                    <Card
+                        style={index === 0 ? { marginLeft: 24 } : {}}
+                        title="Steak with tomato sauce and bulgur rice."
+                        time="20 mins"
+                        author={{
+                            name: 'James Milner',
+                            image: 'https://lwlies.com/wp-content/uploads/2017/04/avatar-2009.jpg'
+                        }}
+                    />
+                )}
+            />
+
+        </SafeAreaView>
     )
 }
 
-export default React.memo(Splash);
+export default React.memo(Home);
