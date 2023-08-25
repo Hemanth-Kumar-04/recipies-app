@@ -12,6 +12,7 @@ const BackButton = (props) => {
   return (
     <Pressable onPress={props.onPress}>
       <Image style={styles.back} source={require('./assets/back.png')} />
+      
     </Pressable>
   )
 }
