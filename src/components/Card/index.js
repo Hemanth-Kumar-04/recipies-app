@@ -1,17 +1,43 @@
-import React from 'react';
-import { Image, Text, View } from 'react-native';
-import Rating from '../Rating';
-import styles from './styles';
+import { StyleSheet, Dimensions } from 'react-native';
+import colors from '../../constants/colors';
 
-const RecipeCard = ({ title, style, image, time }) => {
-    return (
-        <View style={[styles.container, style]}>
-            <Image style={styles.image} source={{ uri: 'https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Puttanesca-fd5810c.jpg'}} />
-            <Text numberOfLines={3} style={styles.title}>{title}</Text>
-            <Text style={styles.label}>Time</Text>
-            <Text style={styles.value}>{time}</Text>
-        </View>
-    );
-};
+const { width } = Dimensions.get('window');
 
-export default React.memo(RecipeCard);
+const styles = StyleSheet.create({
+    container: {
+        borderRadius: 12,
+        backgroundColor: 'rgba(217,217,217,0.5)',
+        padding: 10,
+        width: width * 0.4,
+        marginVertical: 32,
+        marginTop: 60,
+        marginRight: 16,
+    },
+    title: {
+        fontSize: 14,
+        color: colors.grey,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginVertical: 16,
+    },
+    label: {
+        color: colors.lightGrey2,
+        fontSize: 11,
+        marginTop: 8,
+        marginBottom: 4,
+    },
+    value: {
+        color: colors.grey,
+        fontSize: 11,
+        fontWeight: 'bold',
+    },
+    image: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginTop: -60,
+        alignSelf: 'center'
+    }
+});
+
+export default styles;
